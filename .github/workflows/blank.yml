@@ -8,10 +8,17 @@ on:
   push:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
+  
+    permissions:
+      contents: write
+    
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -29,11 +36,8 @@ jobs:
         
       - name: create release
         id: create_release
-        uses: actions/create-release@v1
+        uses: release-drafter/release-drafter@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref_name }}
-          release_name: ${{ github.ref_name }}
 
 
