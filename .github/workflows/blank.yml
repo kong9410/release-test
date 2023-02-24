@@ -22,7 +22,7 @@ jobs:
 
       - name: get branchname
         id: branchname
-        run: echo "version=${{github.head_ref}}" >> $GITHUB_OUTPUT
+        run: echo "version=${{ github.ref_name }}" >> $GITHUB_OUTPUT
         
       - name: print branchname
         run: echo "${{ steps.branchname.outputs.version }}"
